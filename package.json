@@ -1,0 +1,22 @@
+{
+  "name": "uplifting-lifts",
+  "version": "1.0.0",
+  "description": "A coding challenge to design a program for an elevator company controlling the movemont of an elevator in a 10 storey building.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ash-Eileen/uplifting-lifts.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ash-Eileen/uplifting-lifts/issues"
+  },
+  "homepage": "https://github.com/Ash-Eileen/uplifting-lifts#readme",
+  "dependencies": {
+    "prompts": "^2.4.0"
+  }
+}

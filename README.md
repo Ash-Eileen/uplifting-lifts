@@ -2,6 +2,13 @@
 
 A coding challenge to design a program for an elevator company controlling the movemont of an elevator in a 10 storey building.
 
+## Table of Contents
+
+- [Challenge](#challenge)
+- [Test Cases To Consider](#test-cases-to-consider)
+
+<a name="challenge"></a>
+
 ## Challenge
 
 "You are in charge of writing software for an elevator (lift) company.
@@ -11,6 +18,7 @@ A passenger can summon the lift to go up or down from any floor. Once in the lif
 
 Your program needs to plan the optimal set of instructions for the lift to travel, stop, and open its doors."
 
+<a name="test-cases-to-consider"></a>
 ## Test Cases To Consider
 
 - Passenger summons lift on the ground floor. Once in, chooses to go to level 5.
