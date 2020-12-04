@@ -18,14 +18,17 @@ class LiftController {
       }
     }
   }
+
+  startLift() {
+    this.liftView.displayLevelNumber(this.lift.current_floor);
+    this.getInstructions();
+    this.liftView.displayReceivedInstructions(this.lift.instructions);
+    this.lift.setFloorsToVisit();
+  }
 }
 
 let newLift = new LiftController();
 
-console.log(newLift.lift);
-
-newLift.getInstructions();
-
-console.log(newLift.lift.instructions);
+newLift.startLift();
 
 module.exports = LiftController;
