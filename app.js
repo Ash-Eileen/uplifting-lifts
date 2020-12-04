@@ -1,7 +1,5 @@
 // const prompts = require("prompts");
 
-// const instructions = [];
-
 // const addInstructions = async () => {
 //   const liftInstructionQuestions = [
 //     {
@@ -35,7 +33,7 @@
 //       numberOfInstructions.numberOfInstructions--;
 //     }
 //   }
-//   console.log(instructions);
+//   return instructions
 // };
 
 // addInstructions();
