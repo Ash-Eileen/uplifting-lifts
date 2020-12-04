@@ -21,6 +21,11 @@ class LiftView {
     return { level: level, direction: direction };
   }
 
+  addFloor() {
+    let floor = prompt("Which floor would you like to go to? ");
+    return { level: floor, direction: "entered" };
+  }
+
   displayReceivedInstructions(instructions) {
     instructions.map((instruction) => {
       console.log(
