@@ -1,6 +1,10 @@
 var prompt = require("prompt-sync")();
 
 class LiftView {
+  displayLevelNumber(level) {
+    console.log(`Lift now on level: ${level}`);
+  }
+
   shouldInstructionsBeAdded() {
     let response = prompt("New instructions received? (Y or N) ");
     return response;
@@ -15,6 +19,14 @@ class LiftView {
     let level = prompt("What level was the lift called from? ");
     let direction = prompt("Which direction? (Up or Down) ").toLowerCase();
     return { level: level, direction: direction };
+  }
+
+  displayReceivedInstructions(instructions) {
+    instructions.map((instruction) => {
+      console.log(
+        `Instruction received from level ${instruction.level} to go ${instruction.direction}.`
+      );
+    });
   }
 }
 
