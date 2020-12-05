@@ -1,4 +1,4 @@
-var prompt = require("prompt-sync")();
+let prompt = require("prompt-sync")();
 
 class LiftView {
   displayLevelNumber(level) {
@@ -6,8 +6,10 @@ class LiftView {
   }
 
   shouldInstructionsBeAdded() {
-    let response = prompt("New instructions received? (Y or N) ");
-    return response;
+    let response = prompt(
+      "New instructions received? (Y or N or E to Exit Program) "
+    );
+    return response.toUpperCase();
   }
 
   numberOfInstructionsToAdd() {
@@ -22,6 +24,7 @@ class LiftView {
   }
 
   addFloor() {
+    console.log("Passenger entering lift.");
     let floor = prompt("Which floor would you like to go to? ");
     return { level: floor, direction: "entered" };
   }
@@ -29,7 +32,7 @@ class LiftView {
   displayReceivedInstructions(instructions) {
     instructions.map((instruction) => {
       console.log(
-        `Instruction received from level ${instruction.level} to go ${instruction.direction}.`
+        `Instruction received from level ${instruction.level} to go ${instruction.direction}. `
       );
     });
   }
