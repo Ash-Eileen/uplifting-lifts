@@ -12,8 +12,11 @@ class LiftController {
   getUpOrDownInstructions() {
     let response = this.liftView.shouldInstructionsBeAdded();
     if (response === "Y") {
-      let numberOfInstructionsToAdd = this.liftView.numberOfInstructionsToAdd();
-      while (numberOfInstructionsToAdd > 0) {
+      let numberOfInstructionsToAdd = Number(
+        this.liftView.numberOfInstructionsToAdd()
+      );
+      for (let i = 1; numberOfInstructionsToAdd > 0; i++) {
+        console.log(`Passenger ${i}:`);
         let newestInstruction = this.liftView.newInstructionsToAdd();
         this.lift.addUpOrDownInstructions(newestInstruction);
         numberOfInstructionsToAdd--;
@@ -83,8 +86,11 @@ class LiftController {
   }
 
   moveLift() {
-    console.log(this.lift.instructions);
-    if (
+    if (this.lift.instructions.length === 0) {
+      console.log("Idling on Ground Floor");
+      this.lift.currentFloor = 1;
+      this.startLiftAndSetInitialMovement();
+    } else if (
       this.lift.direction === "up" &&
       this.lift.topFloorToVisit != this.lift.currentFloor
     ) {
@@ -139,13 +145,20 @@ class LiftController {
 
   operateLiftWithUserInput() {
     this.setInstructionsAndTopAndBottomFloor();
+    if (this.shouldLiftOpen) {
+      this.getLevelInstructions();
+      this.lift.openLift();
+    }
     while (this.continueOperation) {
       this.moveLift();
+    }
+    if (!this.continueOperation) {
+      process.exit();
     }
   }
 
   operateLiftBasicUserInput() {
-    let array = prompt("Please enter a list of instructions: ");
+    let array = this.liftView.getFullInstructionsAtStart();
     this.liftView.displayLevelNumber(this.lift.currentFloor);
     this.lift.instructions = JSON.parse(array);
     this.lift.direction === "up"
@@ -159,14 +172,10 @@ class LiftController {
     while (this.lift.instructions.length > 0) {
       this.moveLiftWithBasicUserInput();
     }
+    if (this.lift.instructions.length === 0) {
+      process.exit();
+    }
   }
 }
-
-let newLift = new LiftController();
-newLift.operateLiftBasicUserInput();
-// newLift.operateLiftBasicUserInput([
-//   { level: 6, direction: "down" },
-//   { level: 4, direction: "down" },
-// ]);
 
 module.exports = LiftController;

@@ -1,4 +1,10 @@
 let prompt = require("prompt-sync")();
+const readline = require("readline");
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
 
 class LiftView {
   displayLevelNumber(level) {
@@ -35,6 +41,11 @@ class LiftView {
         `Instruction received from level ${instruction.level} to go ${instruction.direction}. `
       );
     });
+  }
+
+  getFullInstructionsAtStart() {
+    let fullInstructions = prompt("Please enter a list of instructions: ");
+    return fullInstructions;
   }
 }
 
