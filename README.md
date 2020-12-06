@@ -90,7 +90,7 @@ Please note that in both of these modes no error handling has been implemented a
 
 #### Basic
 
-Runs with very little user input. The initial Instructions entered in JSON format, i.e. `[ {"level":"6", "direction":"down"}, {"level":"4", "direction":"down"}]`. When the lift arrives at the requested level the user is prompted for their destination.
+Runs with very little user input. The initial Instructions entered in JSON string format, i.e. `[ {"level":"6", "direction":"down"}, {"level":"4", "direction":"down"}]`. When the lift arrives at the requested level the user is prompted for their destination.
 
 #### Interactive Mode
 
