@@ -1,10 +1,4 @@
 let prompt = require("prompt-sync")();
-const readline = require("readline");
-
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
 
 class LiftView {
   displayLevelNumber(level) {
