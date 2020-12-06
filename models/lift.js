@@ -5,9 +5,11 @@ class Lift {
     this.direction = "up";
     this.topFloorToVisit = 1;
     this.bottomFloorToVisit = 1;
+    this.open = false;
   }
 
-  addUpOrDownInstructions(newInstructions) {
+  // Update name in controller
+  addInstructions(newInstructions) {
     return this.instructions.push(newInstructions);
   }
 
@@ -57,7 +59,7 @@ class Lift {
               console.log("Passenger disembarked");
             }
             this.removeInstruction(instruction);
-            return true;
+            this.open = true;
           }
           break;
         case "down":
@@ -70,12 +72,12 @@ class Lift {
               console.log("Passenger disembarked");
             }
             this.removeInstruction(instruction);
-            return true;
+            this.open = true;
           }
         default:
-          return false;
       }
     });
+    return this.open
   }
 
   removeInstruction(currentInstruction) {

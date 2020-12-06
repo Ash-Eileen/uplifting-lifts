@@ -23,22 +23,22 @@ Your program needs to plan the optimal set of instructions for the lift to trave
 ## Test Cases To Consider
 
 - Passenger summons lift on the ground floor. Once in, chooses to go to level 5.
-  `[ {"level":"1", "direction":"up"}]`
+Instructions in basic mode - `[ {"level":"1", "direction":"up"}]`
 - Passenger summons lift on level 6 to go down. A passenger on level 4 summons the lift to go down. They both choose L1.
-  `[ {"level":"6", "direction":"down"}, {"level":"4", "direction":"down"}]`
+Instructions in basic mode - `[ {"level":"6", "direction":"down"}, {"level":"4", "direction":"down"}]`
 - Passenger 1 summons lift to go up from L2. Passenger 2 summons lift to go down from L4. Passenger 1 chooses to go to L6. Passenger 2 chooses to go to Ground Floor
-  `[ {"level":"2", "direction":"up"}, {"level":"4", "direction":"down"}]`
+Instructions in basic mode - `[ {"level":"2", "direction":"up"}, {"level":"4", "direction":"down"}]`
 - Passenger 1 summons lift to go up from Ground. They choose L5. Passenger 2 summons lift to go down from L4. Passenger 3 summons lift to go down from L10. Passengers 2 and 3 choose to travel to Ground.
-  `[ {"level":"1", "direction":"up"}, {"level":"4", "direction":"down"}, {"level":"10", "direction":"down"}]`
+Instructions in basic mode - `[ {"level":"1", "direction":"up"}, {"level":"4", "direction":"down"}, {"level":"10", "direction":"down"}]`
 
 ## Modes
 
 ### Basic
 
-Initial Instructions entered in JSON format, i.e. `[ {"level":"6", "direction":"down"}, {"level":"4", "direction":"down"}]`
+Runs with very little user input. The initial Instructions entered in JSON format, i.e. `[ {"level":"6", "direction":"down"}, {"level":"4", "direction":"down"}]`. When the lift arrives at the requested level the user is prompted for their destination.
 
-### UI
+### Interactive Mode
 
-Interactive
+In this version the user is prompted for input at each level. Firstly they are asked if any instructions have been received if yes, the user will be prompted for the number of requests and then each request needs to be entered. This provides the option for exit when asked if new instructions were received.
 
 ### Tests - To Be Created

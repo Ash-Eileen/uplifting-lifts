@@ -4,7 +4,7 @@
   "description": "A coding challenge to design a program for an elevator company controlling the movemont of an elevator in a 10 storey building.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,8 @@
   "dependencies": {
     "prompt-sync": "^4.2.0",
     "prompts": "^2.4.0"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3"
   }
 }

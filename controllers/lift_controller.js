@@ -1,6 +1,5 @@
 const Lift = require("../models/lift");
 const LiftView = require("../views/lift_view");
-let prompt = require("prompt-sync")();
 
 class LiftController {
   constructor() {
@@ -18,7 +17,7 @@ class LiftController {
       for (let i = 1; numberOfInstructionsToAdd > 0; i++) {
         console.log(`Passenger ${i}:`);
         let newestInstruction = this.liftView.newInstructionsToAdd();
-        this.lift.addUpOrDownInstructions(newestInstruction);
+        this.lift.addInstructions(newestInstruction);
         numberOfInstructionsToAdd--;
       }
     }
@@ -35,14 +34,14 @@ class LiftController {
         this.lift.currentFloor == instruction.level
       ) {
         let addFloor = this.liftView.addFloor();
-        this.lift.addUpOrDownInstructions(addFloor);
+        this.lift.addInstructions(addFloor);
       } else if (
         this.lift.currentFloor == this.lift.topFloorToVisit &&
         this.lift.currentFloor == instruction.level &&
         instruction.direction != "entered"
       ) {
         let addFloor = this.liftView.addFloor();
-        this.lift.addUpOrDownInstructions(addFloor);
+        this.lift.addInstructions(addFloor);
       }
       this.lift.direction === "up"
         ? this.lift.setTopFloorToVisit()
@@ -101,6 +100,7 @@ class LiftController {
       if (this.shouldLiftOpen) {
         this.getLevelInstructions();
         this.lift.openLift();
+        this.lift.open = false
       }
     } else if (
       this.lift.direction === "down" &&
@@ -113,6 +113,7 @@ class LiftController {
       if (this.shouldLiftOpen) {
         this.getLevelInstructions();
         this.lift.openLift();
+        this.lift.open = false;
       }
     }
   }
@@ -128,6 +129,7 @@ class LiftController {
       if (this.shouldLiftOpen) {
         this.getLevelInstructions();
         this.lift.openLift();
+        this.lift.open = false
       }
     } else if (
       this.lift.direction === "down" &&
@@ -139,6 +141,7 @@ class LiftController {
       if (this.shouldLiftOpen) {
         this.getLevelInstructions();
         this.lift.openLift();
+        this.lift.open = false
       }
     }
   }
@@ -148,6 +151,7 @@ class LiftController {
     if (this.shouldLiftOpen) {
       this.getLevelInstructions();
       this.lift.openLift();
+      this.lift.open = false;
     }
     while (this.continueOperation) {
       this.moveLift();
@@ -164,10 +168,10 @@ class LiftController {
     this.lift.direction === "up"
       ? this.lift.setTopFloorToVisit()
       : this.lift.setBottomFloorToVisit();
-
     if (this.shouldLiftOpen) {
       this.getLevelInstructions();
       this.lift.openLift();
+      this.lift.open = false;
     }
     while (this.lift.instructions.length > 0) {
       this.moveLiftWithBasicUserInput();
