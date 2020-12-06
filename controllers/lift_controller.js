@@ -69,6 +69,14 @@ class LiftController {
   shouldLiftOpen() {
     return this.lift.openLift();
   }
+  
+  openingLiftSteps() {
+    if (this.shouldLiftOpen) {
+      this.getLevelInstructions();
+      this.lift.openLift();
+      this.lift.open = false
+    }
+  }
 
   shouldLiftChangeDirections() {
     if (
@@ -97,11 +105,7 @@ class LiftController {
       this.liftView.displayLevelNumber(this.lift.currentFloor);
       this.setInstructionsAndTopAndBottomFloor();
       this.shouldLiftChangeDirections();
-      if (this.shouldLiftOpen) {
-        this.getLevelInstructions();
-        this.lift.openLift();
-        this.lift.open = false
-      }
+      this.openingLiftSteps()
     } else if (
       this.lift.direction === "down" &&
       this.lift.bottomFloorToVisit != this.lift.currentFloor
@@ -110,11 +114,7 @@ class LiftController {
       this.liftView.displayLevelNumber(this.lift.currentFloor);
       this.setInstructionsAndTopAndBottomFloor();
       this.shouldLiftChangeDirections();
-      if (this.shouldLiftOpen) {
-        this.getLevelInstructions();
-        this.lift.openLift();
-        this.lift.open = false;
-      }
+      this.openingLiftSteps()
     }
   }
 
@@ -126,11 +126,7 @@ class LiftController {
       this.lift.moveUp();
       this.liftView.displayLevelNumber(this.lift.currentFloor);
       this.shouldLiftChangeDirections();
-      if (this.shouldLiftOpen) {
-        this.getLevelInstructions();
-        this.lift.openLift();
-        this.lift.open = false
-      }
+      this.openingLiftSteps()
     } else if (
       this.lift.direction === "down" &&
       this.lift.bottomFloorToVisit != this.lift.currentFloor
@@ -138,21 +134,13 @@ class LiftController {
       this.lift.moveDown();
       this.liftView.displayLevelNumber(this.lift.currentFloor);
       this.shouldLiftChangeDirections();
-      if (this.shouldLiftOpen) {
-        this.getLevelInstructions();
-        this.lift.openLift();
-        this.lift.open = false
-      }
+      this.openingLiftSteps()
     }
   }
 
   operateLiftWithUserInput() {
     this.setInstructionsAndTopAndBottomFloor();
-    if (this.shouldLiftOpen) {
-      this.getLevelInstructions();
-      this.lift.openLift();
-      this.lift.open = false;
-    }
+    this.openingLiftSteps()
     while (this.continueOperation) {
       this.moveLift();
     }
@@ -168,11 +156,7 @@ class LiftController {
     this.lift.direction === "up"
       ? this.lift.setTopFloorToVisit()
       : this.lift.setBottomFloorToVisit();
-    if (this.shouldLiftOpen) {
-      this.getLevelInstructions();
-      this.lift.openLift();
-      this.lift.open = false;
-    }
+    this.openingLiftSteps()
     while (this.lift.instructions.length > 0) {
       this.moveLiftWithBasicUserInput();
     }
