@@ -20,6 +20,7 @@ class Lift {
     return this.currentFloor--;
   }
 
+  // Updates topFloorToVisit
   setTopFloorToVisit() {
     this.topFloorToVisit = this.instructions.reduce(
       (acc, val) => (Number(val.level) > Number(acc) ? val.level : acc),
@@ -28,6 +29,7 @@ class Lift {
     return this.topFloorToVisit;
   }
 
+  // Updates bottomFloorToVisit
   setBottomFloorToVisit() {
     this.bottomFloorToVisit = this.instructions.reduce(
       (acc, val) => (Number(val.level) < Number(acc) ? val.level : acc),
@@ -36,6 +38,7 @@ class Lift {
     return this.bottomFloorToVisit;
   }
 
+  // Changes lift direction
   changeDirection() {
     this.direction = "up"
       ? "down"
@@ -45,6 +48,7 @@ class Lift {
     return this.direction;
   }
 
+  // Opens lift and removes old instructions calling removeInstruction. Also logs that passenger disembarked.
   openLift() {
     this.instructions.map((instruction) => {
       switch (this.direction) {
@@ -76,9 +80,10 @@ class Lift {
         default:
       }
     });
-    return this.open
+    return this.open;
   }
 
+  // Removes instructions that are no longer needed.
   removeInstruction(currentInstruction) {
     this.instructions = this.instructions.filter(
       (instruction) => instruction != currentInstruction

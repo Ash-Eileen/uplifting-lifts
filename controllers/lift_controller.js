@@ -8,6 +8,7 @@ class LiftController {
     this.continueOperation = true;
   }
 
+  // Gets instructions for the floor and direction before a passenger enters the lift.
   getUpOrDownInstructions() {
     let response = this.liftView.shouldInstructionsBeAdded();
     if (response === "Y") {
@@ -27,6 +28,7 @@ class LiftController {
     }
   }
 
+  // When passenger enters the lift it gets their desired level and sets their direction as "entered"
   getLevelInstructions() {
     this.lift.instructions.map((instruction) => {
       if (
@@ -49,6 +51,7 @@ class LiftController {
     });
   }
 
+  // Uses get up or down instructions and sets the highest floor or lowest floor needed to travel to.
   setInstructionsAndTopAndBottomFloor() {
     this.getUpOrDownInstructions();
     this.lift.direction === "up"
@@ -56,6 +59,7 @@ class LiftController {
       : this.lift.setBottomFloorToVisit();
   }
 
+  // Used at startup for interface mode
   startLiftAndSetInitialMovement() {
     this.liftView.displayLevelNumber(this.lift.currentFloor);
     this.getUpOrDownInstructions();
@@ -66,18 +70,21 @@ class LiftController {
     }
   }
 
+  // Tests if lift should open
   shouldLiftOpen() {
     return this.lift.openLift();
   }
-  
+
+  // If lift should open gets the level for the passenger, removes old instructions and then sets this.lift.open back to false.
   openingLiftSteps() {
     if (this.shouldLiftOpen) {
       this.getLevelInstructions();
       this.lift.openLift();
-      this.lift.open = false
+      this.lift.open = false;
     }
   }
 
+  // Tests if lift should change direction and if so changes direction
   shouldLiftChangeDirections() {
     if (
       this.lift.direction === "up" &&
@@ -92,6 +99,7 @@ class LiftController {
     }
   }
 
+  // Controls movement of lift and gets further instructions as required
   moveLift() {
     if (this.lift.instructions.length === 0) {
       console.log("Idling on Ground Floor");
@@ -105,7 +113,7 @@ class LiftController {
       this.liftView.displayLevelNumber(this.lift.currentFloor);
       this.setInstructionsAndTopAndBottomFloor();
       this.shouldLiftChangeDirections();
-      this.openingLiftSteps()
+      this.openingLiftSteps();
     } else if (
       this.lift.direction === "down" &&
       this.lift.bottomFloorToVisit != this.lift.currentFloor
@@ -114,10 +122,11 @@ class LiftController {
       this.liftView.displayLevelNumber(this.lift.currentFloor);
       this.setInstructionsAndTopAndBottomFloor();
       this.shouldLiftChangeDirections();
-      this.openingLiftSteps()
+      this.openingLiftSteps();
     }
   }
 
+  // As per above function but in the basic mode
   moveLiftWithBasicUserInput() {
     if (
       this.lift.direction === "up" &&
@@ -126,7 +135,7 @@ class LiftController {
       this.lift.moveUp();
       this.liftView.displayLevelNumber(this.lift.currentFloor);
       this.shouldLiftChangeDirections();
-      this.openingLiftSteps()
+      this.openingLiftSteps();
     } else if (
       this.lift.direction === "down" &&
       this.lift.bottomFloorToVisit != this.lift.currentFloor
@@ -134,13 +143,14 @@ class LiftController {
       this.lift.moveDown();
       this.liftView.displayLevelNumber(this.lift.currentFloor);
       this.shouldLiftChangeDirections();
-      this.openingLiftSteps()
+      this.openingLiftSteps();
     }
   }
 
+  // Operates Lift with full user input
   operateLiftWithUserInput() {
     this.setInstructionsAndTopAndBottomFloor();
-    this.openingLiftSteps()
+    this.openingLiftSteps();
     while (this.continueOperation) {
       this.moveLift();
     }
@@ -149,6 +159,7 @@ class LiftController {
     }
   }
 
+  // Operates Lift in basic mode.
   operateLiftBasicUserInput() {
     let array = this.liftView.getFullInstructionsAtStart();
     this.liftView.displayLevelNumber(this.lift.currentFloor);
@@ -156,7 +167,7 @@ class LiftController {
     this.lift.direction === "up"
       ? this.lift.setTopFloorToVisit()
       : this.lift.setBottomFloorToVisit();
-    this.openingLiftSteps()
+    this.openingLiftSteps();
     while (this.lift.instructions.length > 0) {
       this.moveLiftWithBasicUserInput();
     }
