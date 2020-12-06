@@ -8,7 +8,6 @@ class Lift {
     this.open = false;
   }
 
-  // Update name in controller
   addInstructions(newInstructions) {
     return this.instructions.push(newInstructions);
   }
