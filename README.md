@@ -6,7 +6,11 @@ A coding challenge to design a program for an elevator company controlling the m
 
 - [Challenge](#challenge)
 - [Test Cases To Consider](#test-cases-to-consider)
-- [Modes](#modes)
+- [Tech Stack](#tech-stack)
+- [Installation](#installation)
+- [How To Run](#how-to-run)
+- [Features](#features)
+- [Tests](#tests)
 
 <a name="challenge"></a>
 
@@ -32,6 +36,46 @@ Instructions in basic mode - `[ {"level":"2", "direction":"up"}, {"level":"4", "
 - Passenger 1 summons lift to go up from Ground. They choose L5. Passenger 2 summons lift to go down from L4. Passenger 3 summons lift to go down from L10. Passengers 2 and 3 choose to travel to Ground.
 Instructions in basic mode - `[ {"level":"1", "direction":"up"}, {"level":"4", "direction":"down"}, {"level":"10", "direction":"down"}]`
 
+<a name="tech-stack"></a>
+
+## Tech Stack
+
+This application was written in JavaScript using Nodejs. The testing has been done with Jest.
+
+<a name="installation"></a>
+
+## Installation
+
+To run this program it is a requirement to have node and npm installed. To check if you have these dependencies please execute the commands:
+
+`node -v`
+
+`npm -v`
+
+If you do not have these installed please follow this [link](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) and follow the instructions appropriate for your OS.
+
+Once you have the required dependencies please clone the repo using your preferred method. Below I have included the command for HTTPS cloning, however, you can find each option on the [repository](https://github.com/Ash-Eileen/uplifting-lifts):
+
+`git clone https://github.com/Ash-Eileen/uplifting-lifts.git`
+
+After this to install the required dependencies for the app itself please run:
+
+`npm install`
+
+<a name="how-to-run"></a>
+
+## How To Run
+
+Two versions of this app can be run. Please ensure you are in the repository where you have cloned the repo.
+
+To run the basic version:
+
+`node app.js basic`
+
+To run the interaction version:
+
+`node app.js`
+
 <a name="features"></a>
 
 ## Features
@@ -40,7 +84,7 @@ Instructions in basic mode - `[ {"level":"1", "direction":"up"}, {"level":"4", "
 
 Two different modes have been created. The basic version is designed to be quicker to test a full set of instructions and see which floors the elevator goes to, which it stops at and where passengers disembark. This only takes user input for the initial set of instructions and at the floors where passengers enter. The interactive mode takes user input at each floor and can be used to test more complex use cases and how adding instructions during the running of the app impact the steps taken.
 
-By default the interactive mode will run, however, using command line arguments it is simple to acces the basic mode. More information on how to execute these commands is available in [blah](link).
+By default the interactive mode will run, however, using command line arguments it is simple to acces the basic mode. More information on how to execute these commands is available in [how to run](#how-to-run).
 
 Please note that in both of these modes no error handling has been implemented at this stage so it is important to ensure instructions are entered correctly. **Please note: both of these modes assume that for the ground floor the user will input 1.**
 
@@ -57,6 +101,8 @@ In this version the user is prompted for input at each level. Firstly they are a
 As with real world elevators this lift will move in one direction at a time and only open for passengers who are travelling in the same direction. For example, if a passenger gets on at level 1 to go to level 10 and a passenger requests the lift after this from level 4 to go down, then the lift will complete its passage to level 10 before returning to level 4 to collect the second passenger.
 
 The lift will move only to the highest requested floor and lowest requested floor in the direction requested. This ensures that an entire circuit of the building does not need to be completed. Once all instruction are complete the lift returns to the ground floor and waits for user input.
+
+<a name="tests"></a>
 
 ## Tests
 
